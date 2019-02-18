@@ -1,7 +1,7 @@
 {
   "name": "katas",
   "version": "1.0.0",
-  "description": "",
+  "description": "_To enable tests for a specific challenge remove the x before the first describe in the necessary spec file._",
   "main": "index.js",
   "scripts": {
     "test": "npm run seed && mocha ./spec",
@@ -12,15 +12,23 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "chai": "^4.1.2",
-    "mocha": "^5.0.1",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
     "sinon": "^4.4.2",
     "supertest": "^3.0.0"
   },
   "dependencies": {
     "async": "^2.6.0",
-    "body-parser": "^1.18.2",
-    "express": "^4.16.2",
-    "pg-promise": "^8.1.1"
-  }
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "pg-promise": "^8.5.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bishgitham/BE1-block-review-1.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bishgitham/BE1-block-review-1/issues"
+  },
+  "homepage": "https://github.com/bishgitham/BE1-block-review-1#readme"
 }

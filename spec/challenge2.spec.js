@@ -1,83 +1,83 @@
-const { expect } = require('chai');
-const app = require('../challenges/challenge2/app');
-const request = require('supertest')(app);
+const { expect } = require("chai");
+const app = require("../challenges/challenge2/app");
+const request = require("supertest")(app);
 
-describe('/api', () => {
-  describe('/genres', () => {
-    it('GET /genres', () => {
+describe("/api", () => {
+  describe("/genres", () => {
+    it("GET /genres", () => {
       return request
-        .get('/api/genres')
+        .get("/api/genres")
         .expect(200)
         .then(res => {
-          expect(res.body).to.have.all.keys('genres');
+          expect(res.body).to.have.all.keys("genres");
           expect(res.body.genres.length).to.equal(9);
-          expect(res.body.genres[0]).to.be.an('object');
+          expect(res.body.genres[0]).to.be.an("object");
         });
     });
-    it('GET /genres/:genre_id', () => {
+    it("GET /genres/:genre_id", () => {
       return request
-        .get('/api/genres/4')
+        .get("/api/genres/4")
         .expect(200)
         .then(res => {
-          expect(res.body).to.have.all.keys('genre');
-          expect(res.body.genre).to.be.an('object');
-          expect(res.body.genre.genre_name).to.equal('FPS');
+          expect(res.body).to.have.all.keys("genre");
+          expect(res.body.genre).to.be.an("object");
+          expect(res.body.genre.genre_name).to.equal("FPS");
         });
     });
-    it('GET /genres/:genre_id/games', () => {
+    it("GET /genres/:genre_id/games", () => {
       return request
-        .get('/api/genres/6/games')
+        .get("/api/genres/6/games")
         .expect(200)
         .then(res => {
-          expect(res.body).to.have.all.keys('games');
+          expect(res.body).to.have.all.keys("games");
           expect(res.body.games.length).to.equal(3);
-          expect(res.body.games[0].game_title).to.equal('Space Harrier');
+          expect(res.body.games[0].game_title).to.equal("Space Harrier");
         });
     });
   });
-  describe('/consoles', () => {
-    it('GET /consoles', () => {
+  describe("/consoles", () => {
+    it("GET /consoles", () => {
       return request
-        .get('/api/consoles')
+        .get("/api/consoles")
         .expect(200)
         .then(res => {
-          expect(res.body).to.have.all.keys('consoles');
+          expect(res.body).to.have.all.keys("consoles");
           expect(res.body.consoles.length).to.equal(7);
-          expect(res.body.consoles[0]).to.be.an('object');
+          expect(res.body.consoles[0]).to.be.an("object");
         });
     });
-    it('GET /consoles/:console_id', () => {
+    it("GET /consoles/:console_id", () => {
       return request
-        .get('/api/consoles/3')
+        .get("/api/consoles/3")
         .expect(200)
         .then(res => {
-          expect(res.body).to.have.all.keys('console');
-          expect(res.body.console).to.be.an('object');
-          expect(res.body.console.console_name).to.equal('N64');
+          expect(res.body).to.have.all.keys("console");
+          expect(res.body.console).to.be.an("object");
+          expect(res.body.console.console_name).to.equal("N64");
         });
     });
-    it('GET /consoles/:console_id/games', () => {
+    it("GET /consoles/:console_id/games", () => {
       return request
-        .get('/api/consoles/5/games')
+        .get("/api/consoles/5/games")
         .expect(200)
         .then(res => {
-          expect(res.body).to.have.all.keys('games');
+          expect(res.body).to.have.all.keys("games");
           expect(res.body.games.length).to.equal(6);
-          expect(res.body.games[0].game_title).to.equal('Altered Beast');
+          expect(res.body.games[0].game_title).to.equal("Altered Beast");
         });
     });
-    it('POST /consoles', () => {
+    it("POST /consoles", () => {
       const newConsole = {
-        console_name: 'CONSOLE_NAME',
+        console_name: "CONSOLE_NAME",
         release_year: 2080
       };
       return request
-        .post('/api/consoles')
+        .post("/api/consoles")
         .send(newConsole)
         .expect(201)
         .then(res => {
-          expect(res.body).to.have.all.keys('console');
-          expect(res.body.console).to.be.an('object');
+          expect(res.body).to.have.all.keys("console");
+          expect(res.body.console).to.be.an("object");
           expect(res.body.console.console_name).to.equal(
             newConsole.console_name
           );
@@ -87,48 +87,48 @@ describe('/api', () => {
         });
     });
   });
-  describe('/studios', () => {
-    it('GET /studios', () => {
+  describe("/studios", () => {
+    it("GET /studios", () => {
       return request
-        .get('/api/studios')
+        .get("/api/studios")
         .expect(200)
         .then(res => {
-          expect(res.body).to.have.all.keys('studios');
+          expect(res.body).to.have.all.keys("studios");
           expect(res.body.studios.length).to.equal(11);
-          expect(res.body.studios[0]).to.be.an('object');
+          expect(res.body.studios[0]).to.be.an("object");
         });
     });
-    it('GET /studios/:studio_id', () => {
+    it("GET /studios/:studio_id", () => {
       return request
-        .get('/api/studios/11')
+        .get("/api/studios/11")
         .expect(200)
         .then(res => {
-          expect(res.body).to.have.all.keys('studio');
-          expect(res.body.studio).to.be.an('object');
-          expect(res.body.studio.studio_name).to.equal('Naughty Dog');
+          expect(res.body).to.have.all.keys("studio");
+          expect(res.body.studio).to.be.an("object");
+          expect(res.body.studio.studio_name).to.equal("Naughty Dog");
         });
     });
-    it('GET /studios/:studio_id/games', () => {
+    it("GET /studios/:studio_id/games", () => {
       return request
-        .get('/api/studios/4/games')
+        .get("/api/studios/4/games")
         .expect(200)
         .then(res => {
-          expect(res.body).to.have.all.keys('games');
+          expect(res.body).to.have.all.keys("games");
           expect(res.body.games.length).to.equal(1);
-          expect(res.body.games[0].game_title).to.equal('Pandemonium');
+          expect(res.body.games[0].game_title).to.equal("Pandemonium");
         });
     });
-    it('POST /studios', () => {
+    it("POST /studios", () => {
       const newStudio = {
-        studio_name: 'NorthGamers',
+        studio_name: "NorthGamers",
         year_established: 2025
       };
       return request
-        .post('/api/studios')
+        .post("/api/studios")
         .send(newStudio)
         .expect(201)
         .then(res => {
-          expect(res.body).to.have.all.keys('studio');
+          expect(res.body).to.have.all.keys("studio");
           expect(res.body.studio.studio_name).to.equal(newStudio.studio_name);
           expect(res.body.studio.year_established).to.equal(
             newStudio.year_established
@@ -136,51 +136,51 @@ describe('/api', () => {
         });
     });
   });
-  describe('/games', () => {
-    it('GET /games', () => {
+  describe("/games", () => {
+    it("GET /games", () => {
       const expected = {
         id: 1,
-        game_title: 'Donkey Kong',
+        game_title: "Donkey Kong",
         game_release_year: 1983,
         pegi_rating: 7,
         votes: 0,
-        genre: 'Platformer',
-        studio: 'Nintendo',
-        console: 'NES'
+        genre: "Platformer",
+        studio: "Nintendo",
+        console: "NES"
       };
       return request
-        .get('/api/games')
+        .get("/api/games")
         .expect(200)
         .then(res => {
-          expect(res.body).to.have.all.keys('games');
+          expect(res.body).to.have.all.keys("games");
           expect(res.body.games.length).to.equal(25);
-          expect(res.body.games[0]).to.be.an('object');
+          expect(res.body.games[0]).to.be.an("object");
           expect(res.body.games[0]).to.eql(expected);
         });
     });
-    it('GET /games/:game_id', () => {
+    it("GET /games/:game_id", () => {
       const expected = {
         id: 14,
-        game_title: 'Dr Robotnik`s Mean Bean Machine',
+        game_title: "Dr Robotnik`s Mean Bean Machine",
         game_release_year: 1993,
         pegi_rating: 3,
         votes: 0,
-        genre: 'Puzzle',
-        studio: 'Sega',
-        console: 'MEGADRIVE'
+        genre: "Puzzle",
+        studio: "Sega",
+        console: "MEGADRIVE"
       };
       return request
-        .get('/api/games/14')
+        .get("/api/games/14")
         .expect(200)
         .then(res => {
-          expect(res.body).to.have.all.keys('game');
-          expect(res.body.game).to.be.an('object');
+          expect(res.body).to.have.all.keys("game");
+          expect(res.body.game).to.be.an("object");
           expect(res.body.game).to.eql(expected);
         });
     });
-    it('POST /games', () => {
+    it("POST /games", () => {
       const newGame = {
-        game_title: 'Super Mauro',
+        game_title: "Super Mauro",
         game_release_year: 2200,
         pegi_rating: 18,
         genre_id: 1,
@@ -188,12 +188,12 @@ describe('/api', () => {
         console_id: 3
       };
       return request
-        .post('/api/games')
+        .post("/api/games")
         .send(newGame)
         .expect(201)
         .then(res => {
-          expect(res.body).to.have.all.keys('game');
-          expect(res.body.game).to.be.an('object');
+          expect(res.body).to.have.all.keys("game");
+          expect(res.body.game).to.be.an("object");
           expect(res.body.game.game_title).to.equal(newGame.game_title);
           expect(res.body.game.game_release_year).to.equal(
             newGame.game_release_year
@@ -204,52 +204,52 @@ describe('/api', () => {
           expect(res.body.game.console_id).to.equal(newGame.console_id);
         });
     });
-    it('PUT /api/games/:game_id?vote=up', () => {
+    it("PUT /api/games/:game_id?vote=up", () => {
       const expected = {
         id: 1,
-        game_title: 'Donkey Kong',
+        game_title: "Donkey Kong",
         game_release_year: 1983,
         pegi_rating: 7,
         votes: 1,
-        genre: 'Platformer',
-        studio: 'Nintendo',
-        console: 'NES'
+        genre: "Platformer",
+        studio: "Nintendo",
+        console: "NES"
       };
       return request
-        .put('/api/games/1?vote=up')
+        .put("/api/games/1?vote=up")
         .expect(200)
         .then(res => {
-          expect(res.body).to.have.all.keys('game');
+          expect(res.body).to.have.all.keys("game");
           expect(res.body.game).to.eql(expected);
         });
     });
-    it('PUT /api/games/:game_id?vote=down', () => {
+    it("PUT /api/games/:game_id?vote=down", () => {
       const expected = {
         id: 1,
-        game_title: 'Donkey Kong',
+        game_title: "Donkey Kong",
         game_release_year: 1983,
         pegi_rating: 7,
         votes: 0,
-        genre: 'Platformer',
-        studio: 'Nintendo',
-        console: 'NES'
+        genre: "Platformer",
+        studio: "Nintendo",
+        console: "NES"
       };
       return request
-        .put('/api/games/1?vote=down')
+        .put("/api/games/1?vote=down")
         .expect(200)
         .then(res => {
-          expect(res.body).to.have.all.keys('game');
+          expect(res.body).to.have.all.keys("game");
           expect(res.body.game).to.eql(expected);
         });
     });
-    it('GET /api/games?year=1996', () => {
+    it("GET /api/games?year=1996", () => {
       return request
-        .get('/api/games?year=1996')
+        .get("/api/games?year=1996")
         .expect(200)
         .then(res => {
-          expect(res.body).to.have.all.keys('games');
+          expect(res.body).to.have.all.keys("games");
           expect(res.body.games.length).to.equal(4);
-          expect(res.body.games[1].game_title).to.equal('Mario Kart 64');
+          expect(res.body.games[1].game_title).to.equal("Mario Kart 64");
         });
     });
     //FROM THIS POINT FORWARD YOU MUST WRITE TESTS OF YOUR OWN, USE THE ABOVE TESTS AS A GUIDE
