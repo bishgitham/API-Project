@@ -1,0 +1,4 @@
+node_modules
+solutions.md
+.DS_Store
+challenges/challenge2/db/config.js
